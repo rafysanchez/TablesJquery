@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <td class="name">Filipe</td> <td class="desc">numercao1</td>
+        </tr>
+        <tr>
+            <td class="name">Diego</td> <td class="desc">numercao2</td>
+        </tr>
+        <tr>
+            <td class="name">Marcos</td> <td class="desc">numercao3</td>
+        </tr>
+    </table>
+    <button id='xxxx'>CLIQUE</button>
+
+
+    <script language="javascript">
+         var valuesNames = [];
+         var valuesDesc = [];
+        $('#xxxx').click(function () {
+           // debugger;
+           // alert('ok');
+
+            $('table tr').each(function () {
+                var name = $(this).find('.name').html();
+                var desc = $(this).find('.desc').html();
+                console.log(name + ' - ' + desc);
+                valuesNames.push(name);
+                valuesDesc.push(desc);
+                var desc = $(this).find('.desc').html();
+                console.log(valuesNames.values);
+                console.log(valuesDesc);
+                
+            });
+            valuesNames = [];
+                valuesDesc = [];
+        });
+    </script>
+
+</body>
+
+</html>

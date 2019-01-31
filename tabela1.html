@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+
+<body>
+    <table id="table-itens" class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr class='info'>
+                <th colspan='6'>Itens do pedido de venda</th>
+            </tr>
+            <tr>
+
+                <th class="th_codigo">Produto</th>
+
+
+                <th class="th_ipi">Aliq. IPI</th>
+                <th>Quantidade</th>
+                <th class="th_unitario">Valor Unit.</th>
+                <th class="th_unitario">Valor IPI</th>
+                <th class="th_total">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id='line1'>
+                <input type='hidden' class='form-control input-sm codigo' id='produto[]' name='ITEMARRAY[1][codigo]'
+                    value='29832' readonly='readonly' />
+                <td><input type='text' class='form-control input-sm codigo' value='29832' disabled /></td>
+                <td class='class_ipi'> <input class='form-control input-sm ipi' type='text' name='ITEMARRAY[1][ipi]' id='ipi[]   '
+                        value='15' readonly='readonly' />
+                <td class='class_quant'> <input class='form-control input-sm codigo' type='text' name='ITEMARRAY[1][quantidade]'
+                        value='' id='qtn02' required /></td>
+                <td class='class_unit'> <input class='form-control input-sm vlr_unitario' type='tel' name='ITEMARRAY[1][vlr_unitario]'
+                        id='valor_unitario03' required /></td>
+                <td class='class_totipi'> <input class='form-control input-sm total' type='text' name='ITEMARRAY[1][totipi]'
+                        id='totipi02' readonly='readonly' /></td>
+                <td class='class_total'> <input class='form-control input-sm total' type='text' name='ITEMARRAY[1][total]'
+                        id='total02' readonly='readonly' /></td>
+            </tr>
+            <tr id='line3'>
+
+                <input type='hidden' class='form-control input-sm codigo' id='produto[]' name='ITEMARRAY[3][codigo]'
+                    value='29835' readonly='readonly' />
+
+
+
+
+                <td><input type='text' class='form-control input-sm codigo' value='29835' disabled /></td>
+
+
+                <td class='class_ipi'> <input class='form-control input-sm ipi' type='text' name='ITEMARRAY[3][ipi]' id='ipi[]   '
+                        value='8' readonly='readonly' />
+                <td class='class_quant'> <input class='form-control input-sm codigo' type='text' name='ITEMARRAY[3][quantidade]'
+                        value='' id='qtn02' required /></td>
+                <td class='class_unit'> <input class='form-control input-sm vlr_unitario' type='tel' name='ITEMARRAY[3][vlr_unitario]'
+                        id='valor_unitario03' required /></td>
+                <td class='class_totipi'> <input class='form-control input-sm total' type='text' name='ITEMARRAY[3][totipi]'
+                        id='totipi02' readonly='readonly' /></td>
+                <td class='class_total'> <input class='form-control input-sm total' type='text' name='ITEMARRAY[3][total]'
+                        id='total02' readonly='readonly' /></td>
+            </tr>
+            <tr class='info'>
+                <td colspan='3'></td>
+                <td class='total' colspan='2'><b>Total do pedido R$ : </b></td>
+                <td>
+                    <div id='total'><span class='value_total'></span> </div>
+                </td>
+
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+                    //$('#qtn02').keyup(function(){
+                    // $('#table-itens tr').keyup(function(){
+
+                    //         var name = $(this).find('.class_quant').html();
+
+                    //         alert(name);
+                    //         console.log(name);
+                    //     });
+                    //           });
+
+                    var arr_resp = []; // Mesma coisa que new Array();
+                    // Pegar todas as linhas da tabela #tabela que contém um input ou um select (para evitar linhas desnecessárias, como o cabeçalho)
+                    // Passo 1.
+                    $('table#table-itens tr:has(input, select)').each(function () {
+                        var self = $(this);
+                        // Passo 2 e 3.
+                        arr_resp.push({
+                            'ipi': self.find('.ipi').val(),
+                            'vlr_unitario': self.find('.vlr_unitario').val(),
+                            'produto': self.find('.codigo').val()
+                        });
+                    });
+
+                    console.log(arr_resp);
+                   
+                    // var select = $('#cmb_cod'); //esse é o select
+                    // // Passo 4.
+                    // $(arr_resp).each(function () {
+                    //     var obj = this;
+                    //     select.append($('<option>').val(obj.codigo).text(obj.obs));
+                    // });
+                });
+    </script>
+
+</body>
+
+</html>
