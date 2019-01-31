@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+
+    <table border="1">
+        <tr>
+            <td>
+                Conteúdo da Primeira Linha
+            </td>
+            <td>
+                <input type="button" value="Excluir Linha 1" onClick="removerLinha(this)" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Conteúdo da Segunda Linha
+            </td>
+            <td>
+                <input type="button" value="Excluir Linha 2" onClick="removerLinha(this)" />
+            </td>
+        </tr>
+    </table>
+
+</body>
+<script language="javascript">
+    function removerLinha(obj) {
+
+        // Capturamos a referência da TR (linha) pai do objeto
+        var objTR = obj.parentNode.parentNode;
+        // Capturamos a referência da TABLE (tabela) pai da linha
+        var objTable = objTR.parentNode;
+        // Capturamos o índice da linha
+        var indexTR = objTR.rowIndex;
+        // Chamamos o método de remoção de linha nativo do JavaScript, passando como parâmetro o índice da linha  
+        objTable.deleteRow(indexTR);
+        // Exibe uma mensagem de confirmação da remoção
+        alert("Remoção Efetuada com Sucesso!!");
+    }
+</script>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <th>Nome do Livro</th>
+            <th>Autor</th>
+            <th>Categoria</th>
+            <th>ISBN</th>
+            <th>Editar Livro</th>
+            <th>ExcluirLivro</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Livro x</td>
+                <td>Autor y</td>
+                <td>Categoria z</td>
+                <td>9999999</td>
+                <td><a href="modal de adição e edição">Editar</a></td>
+                <td><button onclick="Remove(this)"></button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="#" class="editar" data-id="1" data-titulo="Harry Potter e a Pedra Filosofal" data-autor="JK"
+        data-categoria="livro">Editar</a>
+    <script>
+        $(".editar").click(function () {
+            var id = $(this).data('id');
+            var titulo = $(this).data('titulo');
+            var autor = $(this).data('autor');
+            var categoria = $(this).data('categoria');
+            //preenche os campos e chama o modal
+        })
+
+        var table = $('#example').DataTable();
+
+        function deletaRow() {
+
+            $('#example tbody').on('click', 'img.icon-delete', function () {
+                table
+                    .row($(this).parents('tr'))
+                    .remove()
+                    .draw();
+            });
+        }
+
+
+        function addRows() {
+            var table1 = $('#example1').DataTable();
+            var table2 = $('#example2').DataTable();
+
+            $('#example tbody').on('click', 'img.icon-transfer', function () {
+                var row = table1.row($(this).parents('tr'));
+                var rowNode = row.node();
+                row.remove();
+
+                table2
+                    .row.add(rowNode)
+                    .draw();
+            });
+        }
+    </script>
+
+</body>
+
+</html>
