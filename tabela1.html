@@ -79,38 +79,64 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-                    //$('#qtn02').keyup(function(){
-                    // $('#table-itens tr').keyup(function(){
+            alertaLinhasTabela();
+            //$('#qtn02').keyup(function(){
+            // $('#table-itens tr').keyup(function(){
 
-                    //         var name = $(this).find('.class_quant').html();
+            //         var name = $(this).find('.class_quant').html();
 
-                    //         alert(name);
-                    //         console.log(name);
-                    //     });
-                    //           });
+            //         alert(name);
+            //         console.log(name);
+            //     });
+            //           });
 
-                    var arr_resp = []; // Mesma coisa que new Array();
-                    // Pegar todas as linhas da tabela #tabela que contém um input ou um select (para evitar linhas desnecessárias, como o cabeçalho)
-                    // Passo 1.
-                    $('table#table-itens tr:has(input, select)').each(function () {
-                        var self = $(this);
-                        // Passo 2 e 3.
-                        arr_resp.push({
-                            'ipi': self.find('.ipi').val(),
-                            'vlr_unitario': self.find('.vlr_unitario').val(),
-                            'produto': self.find('.codigo').val()
-                        });
+            function montaObjeto() {
+                var arr_resp = []; // Mesma coisa que new Array();
+                // Pegar todas as linhas da tabela #tabela que contém um input ou um select (para evitar linhas desnecessárias, como o cabeçalho)
+                // Passo 1.
+                $('table#table-itens tr:has(input, select)').each(function () {
+                    var self = $(this);
+                    // Passo 2 e 3.
+                    arr_resp.push({
+                        'ipi': self.find('.ipi').val(),
+                        'vlr_unitario': self.find('.vlr_unitario').val(),
+                        'produto': self.find('.codigo').val()
                     });
-
-                    console.log(arr_resp);
-                   
-                    // var select = $('#cmb_cod'); //esse é o select
-                    // // Passo 4.
-                    // $(arr_resp).each(function () {
-                    //     var obj = this;
-                    //     select.append($('<option>').val(obj.codigo).text(obj.obs));
-                    // });
                 });
+
+                console.log(arr_resp);
+            }
+
+
+
+
+            // var select = $('#cmb_cod'); //esse é o select
+            // // Passo 4.
+            // $(arr_resp).each(function () {
+            //     var obj = this;
+            //     select.append($('<option>').val(obj.codigo).text(obj.obs));
+            // });
+
+
+
+            function alertaLinhasTabela() {
+
+
+                var i, linhasDaTabela = new Array();
+                for (i = 0; i < $('.ipi').length; i++) {
+                    linhasDaTabela[i] = new Object(); // ESQUECI ESSA LINHA HEHEHE
+                    linhasDaTabela[i].codigo = $('.ipi')[i].value;
+                    linhasDaTabela[i].descricao = $('.vlr_unitario')[i].value;
+                    linhasDaTabela[i].quantidade = $('.codigo')[i].value;
+                    // linhasDaTabela[i].precouni = $('.ne_pr_precouni')[i].value;
+                    // linhasDaTabela[i].precoTotal = $('.ne_pr_precototal')[i].value;
+                }
+                // ai, se vc quiser saber o codigo da linha 10 por exemplo, é só fazer assim:  
+                alert(linhasDaTabela[$('.ipi').length - 1].codigo);
+                console.log('dasdasasd');
+                console.log(linhasDaTabela);
+            }
+        });
     </script>
 
 </body>

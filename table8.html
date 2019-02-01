@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
 </head>
 
 <body>
 
-    <table>
+    <table id='example' class="table table-striped">
         <thead>
             <th>Nome do Livro</th>
             <th>Autor</th>
@@ -27,16 +28,36 @@
                 <td>Autor y</td>
                 <td>Categoria z</td>
                 <td>9999999</td>
-                <td><a href="modal de adição e edição">Editar</a></td>
-                <td><button onclick="Remove(this)"></button></td>
+                <td><a href="x">Editar</a></td>
+                <td>
+                    <button type="button" class="btn btn-success" onclick="adicionaLinha('example')">+</button>
+                    <button type="button" class="btn btn-success" onclick="removeLinha(this)">-</button>
+                </td>
             </tr>
+            <tr>
+                <td>Livro x</td>
+                <td>Autor y</td>
+                <td>Categoria z</td>
+                <td>9999999</td>
+                <td><a href="x">Editar</a></td>
+                <td>
+                    <button type="button" class="btn btn-success add" onclick="adicionaLinha('example')">+</button>
+                    <button type="button" class="btn btn-success del" onclick="removeLinha(this)">-</button>
+                </td>
+            </tr>
+
+
         </tbody>
     </table>
 
     <a href="#" class="editar" data-id="1" data-titulo="Harry Potter e a Pedra Filosofal" data-autor="JK"
         data-categoria="livro">Editar</a>
-    <script>
+
+
+
+    <script language='javascript'>
         $(".editar").click(function () {
+            debugger;
             var id = $(this).data('id');
             var titulo = $(this).data('titulo');
             var autor = $(this).data('autor');
@@ -44,32 +65,51 @@
             //preenche os campos e chama o modal
         })
 
-        var table = $('#example').DataTable();
+        var table = document.getElementById("example");
 
         function deletaRow() {
+            //$('#example tbody').on('click', 'img.icon-delete', function () {
+            // $('#example tbody').on('click', 'button', function () {
+            //     table
+            //         .row($(this).parents('tr'))
+            //         .remove()
+            //         ;
+            // });
+        }
 
-            $('#example tbody').on('click', 'img.icon-delete', function () {
-                table
-                    .row($(this).parents('tr'))
-                    .remove()
-                    .draw();
-            });
+        function removeLinha(linha) {
+            var i = linha.parentNode.parentNode.rowIndex;
+            document.getElementById('example').deleteRow(i);
+        }
+
+ 
+
+        function adicionaLinha(idTabela) {
+            debugger;
+            var tabela = document.getElementById(idTabela);
+            var numeroLinhas = tabela.rows.length;
+            var linha = tabela.insertRow(numeroLinhas);
+            var celula1 = linha.insertCell(0);
+            var celula2 = linha.insertCell(1);
+            //var celula3 = linha.insertCell(2);
+            celula1.innerHTML = 'produto ' + Math.floor((Math.random() * 100) + 1);
+            celula2.innerHTML = Math.floor((Math.random() * 100) + 1);
+           // celula3.innerHTML = "<button onclick='removeLinha(this)'>Remover</button>";
         }
 
 
-        function addRows() {
-            var table1 = $('#example1').DataTable();
-            var table2 = $('#example2').DataTable();
+        function addRows(r) {
+            // var table1 = $('#example1').DataTable();
+            // var table2 = $('#example2').DataTable();
+            // alert('oi');
+            // $('#example tbody').on('click', 'img.icon-transfer', function () {
+            //     var row = table.row($(this).parents('tr'));
+            //     var rowNode = row.node();
+            //     row.remove();
+            debugger;
+            var i = r.parentNode.parentNode.rowIndex;
+            document.getElementById("example").insertRow(i);
 
-            $('#example tbody').on('click', 'img.icon-transfer', function () {
-                var row = table1.row($(this).parents('tr'));
-                var rowNode = row.node();
-                row.remove();
-
-                table2
-                    .row.add(rowNode)
-                    .draw();
-            });
         }
     </script>
 
